@@ -3,6 +3,7 @@ import Categories from '../components/Categories'
 import Sort from '../components/Sort'
 import PizzaBlock from '../components/PizzaBlock'
 import Sceleton from '../components/Sceleton'
+import Pagenation from '../components/Pagenation'
 // import pizzas from '../assets/pizzas.json'
 
 function Home({ searchValue, setSearchValue }) {
@@ -28,13 +29,15 @@ function Home({ searchValue, setSearchValue }) {
     <Sceleton key={index} />
   ))
 
+  const [currentPage, setCurrentPage] = useState(1)
+
   useEffect(() => {
     setIsLoading(true)
     const orger = sortType.sortProperty.includes('-') ? 'asc' : 'desc'
     const sortBy = sortType.sortProperty.replace('-', '')
     const category = categoryId > 0 ? `category=${categoryId}` : ''
     fetch(
-      `https://63c12a607165626718742aea.mockapi.io/items?${category}&sortBy=${sortBy}&order=${orger}`
+      `https://63c12a607165626718742aea.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${orger}`
     )
       .then((res) => res.json())
       .then((arr) => {
@@ -43,7 +46,7 @@ function Home({ searchValue, setSearchValue }) {
         window.scrollTo(0, 0)
         console.log(arr)
       })
-  }, [categoryId, sortType])
+  }, [categoryId, sortType, currentPage]) //searchValue,
 
   return (
     <div className="container">
@@ -56,6 +59,7 @@ function Home({ searchValue, setSearchValue }) {
       </div>
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items">{isLoading ? sceletons : pizzas}</div>
+      <Pagenation onChagePage={(number) => setCurrentPage(number)} />
     </div>
   )
 }
