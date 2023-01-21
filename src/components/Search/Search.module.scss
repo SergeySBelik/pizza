@@ -1,0 +1,24 @@
+.root {
+  border: 1px solid rgba(0 0 0);
+  padding: 15px 20px;
+  width: 300px;
+  border-radius: 15px;
+  font-size: 16px;
+  &:focus {
+    border: 2px solid rgba(0 0 0);
+    width: 450px;
+  }
+}
+
+.clear {
+  width: 18px;
+  height: 18px;
+  opacity: 0.3;
+  position: absolute;
+  left: 800px;
+  top: 107px;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.8;
+  }
+}

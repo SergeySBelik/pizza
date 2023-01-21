@@ -4,7 +4,8 @@ import Sort from '../components/Sort'
 import PizzaBlock from '../components/PizzaBlock'
 import Sceleton from '../components/Sceleton'
 // import pizzas from '../assets/pizzas.json'
-function Home() {
+
+function Home({ searchValue, setSearchValue }) {
   const [items, setItems] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 
@@ -13,6 +14,19 @@ function Home() {
     name: 'популярности',
     sortProperty: 'rating',
   }) // Sort const [selected, setSelected] = useState(0)
+
+  const pizzas = items
+    .filter((obj) => {
+      if (obj.title.toLowerCase().includes(searchValue.toLowerCase())) {
+        return true
+      }
+      return false
+    })
+    .map((obj) => <PizzaBlock key={obj.id} {...obj} />)
+
+  const sceletons = [...new Array(6)].map((_, index) => (
+    <Sceleton key={index} />
+  ))
 
   useEffect(() => {
     setIsLoading(true)
@@ -41,11 +55,7 @@ function Home() {
         <Sort value={sortType} onChangeSort={(i) => setSortType(i)} />
       </div>
       <h2 className="content__title">Все пиццы</h2>
-      <div className="content__items">
-        {isLoading
-          ? [...new Array(6)].map((_, index) => <Sceleton key={index} />)
-          : items.map((obj) => <PizzaBlock key={obj.id} {...obj} />)}
-      </div>
+      <div className="content__items">{isLoading ? sceletons : pizzas}</div>
     </div>
   )
 }
