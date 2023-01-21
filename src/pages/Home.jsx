@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import Categories from '../components/Categories'
 import Sort from '../components/Sort'
 import PizzaBlock from '../components/PizzaBlock'
 import Sceleton from '../components/Sceleton'
 import Pagenation from '../components/Pagenation'
+import { SearchContext } from '../App'
 // import pizzas from '../assets/pizzas.json'
 
-function Home({ searchValue, setSearchValue }) {
+function Home() {
+  const { searchValue } = useContext(SearchContext)
+
   const [items, setItems] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 

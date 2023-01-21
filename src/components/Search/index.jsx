@@ -1,9 +1,9 @@
-// import React, { useContext } from 'react'
-// import { SearchContext } from '../../App'
+import React, { useContext } from 'react'
+import { SearchContext } from '../../App'
 import styles from './Search.module.scss'
 
-const Search = ({ searchValue, setSearchValue }) => {
-  // const { searchValue, setSearchValue } = useContext(SearchContext)
+const Search = () => {
+  const { searchValue, setSearchValue } = useContext(SearchContext)
   return (
     <>
       <input
