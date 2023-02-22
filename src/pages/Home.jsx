@@ -6,16 +6,11 @@ import Sceleton from '../components/Sceleton'
 import Pagenation from '../components/Pagenation'
 import { SearchContext } from '../App'
 import { useDispatch, useSelector } from 'react-redux'
-// import pizzas from '../assets/pizzas.json'
 import { setCategoryId } from '../redux/slices/filterSlice'
+import axios from 'axios'
 
 function Home() {
   const dispatch = useDispatch()
-  // const categoryId = useSelector((state) => state.filter.categoryId)
-  // const onChangeCategory = (id) => {
-  //   dispatch(setCategoryId(id))
-  // }
-  // const sortType = useSelector((state) => state.filter.sort.sortProperty)
   const { categoryId, sort } = useSelector((state) => state.filter)
 
   const onChangeCategory = (id) => {
@@ -25,12 +20,6 @@ function Home() {
 
   const [items, setItems] = useState([])
   const [isLoading, setIsLoading] = useState(true)
-
-  // const [categoryId, setCategoryId] = useState(0) //Categories //const [activeIndex, setActiveIndex] = useState('')
-  // const [sortType, setSortType] = useState({
-  //   name: 'популярности',
-  //   sortProperty: 'rating',
-  // }) // Sort const [selected, setSelected] = useState(0)
 
   const pizzas = items
     .filter((obj) => {
@@ -52,17 +41,26 @@ function Home() {
     const orger = sort.sortProperty.includes('-') ? 'asc' : 'desc'
     const sortBy = sort.sortProperty.replace('-', '')
     const category = categoryId > 0 ? `category=${categoryId}` : ''
-    fetch(
-      `https://63c12a607165626718742aea.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${orger}`
-    )
-      .then((res) => res.json())
-      .then((arr) => {
-        setItems(arr)
+    // fetch(
+    //   `https://63c12a607165626718742aea.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${orger}`
+    // )
+    //   .then((res) => res.json())
+    //   .then((arr) => {
+    //     setItems(arr)
+    //     setIsLoading(false)
+    //     window.scrollTo(0, 0)
+    //     // console.log(arr)
+    //   })
+    axios
+      .get(
+        `https://63c12a607165626718742aea.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${orger}`
+      )
+      .then((res) => {
+        setItems(res.data)
         setIsLoading(false)
-        window.scrollTo(0, 0)
-        // console.log(arr)
       })
-  }, [categoryId, sort.sortProperty, currentPage]) //searchValue,
+    window.scrollTo(0, 0)
+  }, [categoryId, sort.sortProperty, currentPage])
 
   return (
     <div className="container">

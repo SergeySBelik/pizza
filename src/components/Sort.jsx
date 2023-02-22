@@ -6,7 +6,6 @@ function Sort({ value, onChangeSort }) {
   const dispatch = useDispatch()
   const sort = useSelector((state) => state.filter.sort)
 
-  // const [selected, setSelected] = useState(0)
   const [open, setOpen] = useState(false)
   const list = [
     { name: 'популярности(DESC)', sortProperty: 'rating' },
