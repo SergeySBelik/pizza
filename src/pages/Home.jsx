@@ -6,15 +6,18 @@ import Sceleton from '../components/Sceleton'
 import Pagenation from '../components/Pagenation'
 import { SearchContext } from '../App'
 import { useDispatch, useSelector } from 'react-redux'
-import { setCategoryId } from '../redux/slices/filterSlice'
+import { setCategoryId, setCurrentPage } from '../redux/slices/filterSlice'
 import axios from 'axios'
 
 function Home() {
   const dispatch = useDispatch()
-  const { categoryId, sort } = useSelector((state) => state.filter)
+  const { categoryId, sort, currentPage } = useSelector((state) => state.filter)
 
   const onChangeCategory = (id) => {
     dispatch(setCategoryId(id))
+  }
+  const onChagePage = (number) => {
+    dispatch(setCurrentPage(number))
   }
   const { searchValue } = useContext(SearchContext)
 
@@ -34,23 +37,14 @@ function Home() {
     <Sceleton key={index} />
   ))
 
-  const [currentPage, setCurrentPage] = useState(1)
+  // const [currentPage, setCurrentPage] = useState(1)
 
   useEffect(() => {
     setIsLoading(true)
     const orger = sort.sortProperty.includes('-') ? 'asc' : 'desc'
     const sortBy = sort.sortProperty.replace('-', '')
     const category = categoryId > 0 ? `category=${categoryId}` : ''
-    // fetch(
-    //   `https://63c12a607165626718742aea.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${orger}`
-    // )
-    //   .then((res) => res.json())
-    //   .then((arr) => {
-    //     setItems(arr)
-    //     setIsLoading(false)
-    //     window.scrollTo(0, 0)
-    //     // console.log(arr)
-    //   })
+
     axios
       .get(
         `https://63c12a607165626718742aea.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${orger}`
@@ -70,7 +64,7 @@ function Home() {
       </div>
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items">{isLoading ? sceletons : pizzas}</div>
-      <Pagenation onChagePage={(number) => setCurrentPage(number)} />
+      <Pagenation currentPage={currentPage} onChagePage={onChagePage} />
     </div>
   )
 }
