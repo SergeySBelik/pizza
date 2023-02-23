@@ -37,8 +37,6 @@ function Home() {
     <Sceleton key={index} />
   ))
 
-  // const [currentPage, setCurrentPage] = useState(1)
-
   useEffect(() => {
     setIsLoading(true)
     const orger = sort.sortProperty.includes('-') ? 'asc' : 'desc'

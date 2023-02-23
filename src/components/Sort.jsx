@@ -5,6 +5,7 @@ import { setSort } from '../redux/slices/filterSlice'
 function Sort({ value, onChangeSort }) {
   const dispatch = useDispatch()
   const sort = useSelector((state) => state.filter.sort)
+  const sortRef = React.useRef()
 
   const [open, setOpen] = useState(false)
   const list = [
@@ -21,7 +22,7 @@ function Sort({ value, onChangeSort }) {
   }
 
   return (
-    <div className="sort">
+    <div ref={sortRef} className="sort">
       <div className="sort__label">
         <svg
           width="10"
