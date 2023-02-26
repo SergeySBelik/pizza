@@ -51,6 +51,10 @@ function Home() {
         setItems(res.data)
         setIsLoading(false)
       })
+      .catch((err) => {
+        console.log(err)
+        setIsLoading(false)
+      })
     window.scrollTo(0, 0)
   }, [categoryId, sort.sortProperty, currentPage])
 
