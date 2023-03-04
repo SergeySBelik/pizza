@@ -1,20 +1,21 @@
 import React from 'react'
 
+const CATEGORIES = [
+  'Все',
+  'Мясные',
+  'Bегетарианская',
+  'Гриль',
+  'Острые',
+  'Закрытые',
+]
+
 function Categories({ value, onChangeCategory }) {
   // const [activeIndex, setActiveIndex] = useState('')
-  const categories = [
-    'Все',
-    'Мясные',
-    'Bегетарианская',
-    'Гриль',
-    'Острые',
-    'Закрытые',
-  ]
 
   return (
     <div className="categories">
       <ul>
-        {categories.map((categoryName, i) => {
+        {CATEGORIES.map((categoryName, i) => {
           return (
             <li
               key={i}

@@ -9,6 +9,11 @@
     justify-content: space-between;
   }
 
+  &__cart-icon {
+    display: inline-block;
+    margin-left: 6px;
+  }
+
   &__logo {
     display: flex;
 

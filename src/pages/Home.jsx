@@ -22,6 +22,7 @@ function Home() {
   }
   const { searchValue } = useContext(SearchContext)
 
+  const [nav, setNav] = useState(false)
   const [items, setItems] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 
@@ -58,7 +59,7 @@ function Home() {
       })
     window.scrollTo(0, 0)
   }, [categoryId, sort.sortProperty, currentPage])
-  const [nav, setNav] = useState(false)
+
   return (
     <div className="container">
       <div
