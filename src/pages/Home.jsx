@@ -8,6 +8,7 @@ import { SearchContext } from '../App'
 import { useDispatch, useSelector } from 'react-redux'
 import { setCategoryId, setCurrentPage } from '../redux/slices/filterSlice'
 import axios from 'axios'
+import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai'
 
 function Home() {
   const dispatch = useDispatch()
@@ -57,12 +58,21 @@ function Home() {
       })
     window.scrollTo(0, 0)
   }, [categoryId, sort.sortProperty, currentPage])
-
+  const [nav, setNav] = useState(false)
   return (
     <div className="container">
-      <div className="content__top">
+      <div
+        className={
+          nav
+            ? 'content__top burger_menu burger_active'
+            : 'content__top burger_menu'
+        }
+      >
         <Categories value={categoryId} onChangeCategory={onChangeCategory} />
         <Sort />
+      </div>
+      <div onClick={() => setNav(!nav)} className="mobile_btn">
+        {nav ? <AiOutlineClose size={50} /> : <AiOutlineMenu size={50} />}
       </div>
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items">{isLoading ? sceletons : pizzas}</div>

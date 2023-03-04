@@ -19,7 +19,10 @@ function Header() {
             </div>
           </div>
         </Link>
-        <Search />
+        <div className="search">
+          <Search />
+        </div>
+
         <div className="header__cart">
           <Link to="/cart" className="button button--cart">
             <span>{totalPrice}</span>
