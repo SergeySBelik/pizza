@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import imgLogo from '../assets/img/pizza-logo.svg'
 import cartIcon from '../assets/img/cart.svg'
 import Search from './Search/Search'
-import SearchIcon from './Search/SearchIcon'
+// import SearchIcon from './Search/SearchIcon'
 import { useSelector } from 'react-redux'
 import React, { useState } from 'react'
 
@@ -18,15 +18,15 @@ function Header() {
         <Link to="/">
           <div className="header__logo">
             <img width="38" src={imgLogo} alt="Pizza logo" />
-            <div>
+            <div className='header_title'>
               <h1>React Pizza</h1>
-              <p>самая вкусная пицца во вселенной</p>
+              <p>Гуцульська піца на дровах</p>
             </div>
           </div>
         </Link>
 
-        <SearchIcon onClick={() => setShowSearch((value) => !value)} />
-        <Search showSearch={showSearch} />
+        {/* <SearchIcon onClick={() => setShowSearch((value) => !value)} /> */}
+        <Search showSearch={showSearch} className="pc" />
 
         <div className="header__cart">
           <Link to="/cart" className="button button--cart">

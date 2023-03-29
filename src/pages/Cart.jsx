@@ -51,7 +51,7 @@ function Cart() {
                     stroke-linejoin="round"
                   />
                 </svg>
-                Корзина
+                Кошик
               </h2>
               <div onClick={onClickClear} class="cart__clear">
                 <svg
@@ -91,7 +91,7 @@ function Cart() {
                   />
                 </svg>
 
-                <span>Очистить корзину</span>
+                <span>Очистити кошик</span>
               </div>
             </div>
             <div class="content__items">
@@ -103,11 +103,11 @@ function Cart() {
               <div class="cart__bottom-details">
                 <span>
                   {' '}
-                  Всего пицц: <b>{totalCount} шт.</b>{' '}
+                  Всього піц: <b>{totalCount} шт.</b>{' '}
                 </span>
                 <span>
                   {' '}
-                  Сумма заказа: <b>{totalPrice} ₽</b>{' '}
+                  Сума замовлення: <b>{totalPrice} ₽</b>{' '}
                 </span>
               </div>
               <div class="cart__bottom-buttons">
@@ -127,10 +127,10 @@ function Cart() {
                       stroke-linejoin="round"
                     />
                   </svg>
-                  <span>Вернуться назад</span>
+                  <span>Повернутися назад</span>
 
                   <div class="button pay-btn">
-                    <span>Оплатить сейчас</span>
+                    <span>Оплатити зараз</span>
                   </div>
                 </button>
               </div>

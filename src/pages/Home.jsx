@@ -75,7 +75,7 @@ function Home() {
       <div onClick={() => setNav(!nav)} className="mobile_btn">
         {nav ? <AiOutlineClose size={50} /> : <AiOutlineMenu size={50} />}
       </div>
-      <h2 className="content__title">Все пиццы</h2>
+      <h2 className="content__title">Усі піци</h2>
       <div className="content__items">{isLoading ? sceletons : pizzas}</div>
       <Pagenation currentPage={currentPage} onChagePage={onChagePage} />
     </div>

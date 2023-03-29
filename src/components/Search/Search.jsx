@@ -3,6 +3,7 @@ import { SearchContext } from '../../App'
 import styles from './Search.module.scss'
 import debounce from 'lodash.debounce'
 import clsx from 'clsx'
+import SearchIcon from './SearchIcon'
 
 const Search = ({ showSearch, className }) => {
   const [value, setValue] = useState('')
@@ -27,13 +28,14 @@ const Search = ({ showSearch, className }) => {
 
   return (
     <div className={clsx('search', className)}>
+      <SearchIcon />
       {showSearch && (
         <input
           ref={inputRef}
           value={value}
           onChange={onChangeInput}
           className={styles.root}
-          placeholder="Поиск пицы....."
+          placeholder="Пошук піци....."
         />
       )}
 

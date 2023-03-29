@@ -9,12 +9,12 @@ function Sort({ value, onChangeSort }) {
 
   const [open, setOpen] = useState(false)
   const list = [
-    { name: 'популярности(DESC)', sortProperty: 'rating' },
-    { name: 'популярности(ASC)', sortProperty: '-rating' },
-    { name: 'цене(DESC)', sortProperty: 'price' },
-    { name: 'цене(ASC)', sortProperty: '-price' },
-    { name: 'алфавиту(DESC)', sortProperty: 'title' },
-    { name: 'алфавиту(ASC)', sortProperty: '-title' },
+    { name: 'популярності(DESC)', sortProperty: 'rating' },
+    { name: 'популярності(ASC)', sortProperty: '-rating' },
+    { name: 'ціні(DESC)', sortProperty: 'price' },
+    { name: 'ціні(ASC)', sortProperty: '-price' },
+    { name: 'алфавіту(DESC)', sortProperty: 'title' },
+    { name: 'алфавіту(ASC)', sortProperty: '-title' },
   ]
   const onClickListItem = (obj) => {
     dispatch(setSort(obj))
@@ -36,7 +36,7 @@ function Sort({ value, onChangeSort }) {
             fill="#2C2C2C"
           />
         </svg>
-        <b>Сортировка по:</b>
+        <b>Сортування за:</b>
         <span onClick={() => setOpen(!open)}>{sort.name}</span>
       </div>
       {open && (
